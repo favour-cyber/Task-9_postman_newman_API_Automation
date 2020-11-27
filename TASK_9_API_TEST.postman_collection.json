@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "01cb5af0-b758-4232-9f1b-db8d23505892",
+		"name": "TASK 9 API TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "get all todo entries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed9996ec-7082-4755-b5ec-d5870e3dba48",
+								"exec": [
+									"pm.test(\"status code is 200\", function () {\r",
+									"    pm.response.to.have.status (200);\r",
+									"});\r",
+									"pm.test(\"serve is present\", function () {\r",
+									"    pm.response.to.have.header(\"server\");\r",
+									"});\r",
+									"pm.test(\"Content type is present\", function () {\r",
+									"    pm.response.to.have.header(\"content-type\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://demo.fusio-project.org/index.php/todo",
+							"protocol": "https",
+							"host": [
+								"demo",
+								"fusio-project",
+								"org"
+							],
+							"path": [
+								"index.php",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single todo data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78d63412-3264-4ace-bfc2-f8db7c98452d",
+								"exec": [
+									"pm.test(\"Status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"vary\", function () {\r",
+									"    pm.response.to.have.header(\"vary\");\r",
+									"});\r",
+									"pm.test(\"Keep-Alive is present\", function () {\r",
+									"    pm.response.to.have.header(\"Keep-Alive\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://demo.fusio-project.org/index.php/todo/?todo_id=2",
+							"protocol": "https",
+							"host": [
+								"demo",
+								"fusio-project",
+								"org"
+							],
+							"path": [
+								"index.php",
+								"todo",
+								""
+							],
+							"query": [
+								{
+									"key": "todo_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Create new record in data base",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d1e52afc-e99c-4158-901b-b12ad1339b03",
+								"exec": [
+									"pm.test(\"status is not 200\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"NEL is present\", function () {\r",
+									"    pm.response.to.have.header(\"NEL\");\r",
+									"});\r",
+									"pm.test(\"server is present\", function () {\r",
+									"    pm.response.to.have.header(\"server\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"388\",\r\n    \"createdAt\": \"2020-11\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/user",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "delete an user record",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02c9f029-7d63-48df-b894-cf5e85c0baa8",
+								"exec": [
+									"//Test 1:confirm status is 200\r",
+									"pm.test(\"status is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"//Test 2:confirm CF-RAY is present\r",
+									"pm.test(\"CF-RAY is present\", function () {\r",
+									"    pm.response.to.have.header(\"CF-RAY\");\r",
+									"});\r",
+									"//Test comfirm the  Server is present\r",
+									"pm.test(\"Server is present\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/user/2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "Update an user record",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "69589f72-c57a-4af7-9208-2eb18a98485c",
+								"exec": [
+									"pm.test(\"status is not 209\", function () { \r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"Report-To is present\", function () {\r",
+									"    pm.response.to.have.header(\"Report-To\");\r",
+									"});\r",
+									"pm.test(\"Vary is present\", function () {\r",
+									"    pm.response.to.have.header(\"Vary\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/user/2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
